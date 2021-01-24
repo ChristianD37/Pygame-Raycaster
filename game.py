@@ -80,3 +80,7 @@ class Game():
         glClearColor(.3,.3,.3,0)
         gluOrtho2D(0,1024,512,0)
 
+if __name__ == "__main__":
+    g = Game()
+    while g.running:
+        g.game_loop()
