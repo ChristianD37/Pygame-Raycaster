@@ -19,6 +19,7 @@ class Game():
         self.prev_time = time.time()
         self.player = Player(self)
         self.map = Map(self)
+        self.fps_list = []
 
     def game_loop(self):
         while self.playing:
@@ -68,6 +69,7 @@ class Game():
         now = time.time()
         self.dt = now - self.prev_time
         self.prev_time = now
+        self.get_fps()
 
     def reset_keys(self):
         for key in self.actions:
@@ -77,6 +79,15 @@ class Game():
         pygame.display.set_mode((w,h), pygame.OPENGL|pygame.DOUBLEBUF)
         glClearColor(0,0,0,0)
         gluOrtho2D(0,1024,512,0)
+
+    def get_fps(self):
+        fps = 0
+        if self.dt: fps = 1/self.dt
+        if len(self.fps_list) == 50:
+            self.fps_list.pop(0)
+        self.fps_list.append(fps)
+        avg_fps = sum(self.fps_list) / len(self.fps_list)
+        pygame.display.set_caption('Raycaster - FPS:' + str(round(avg_fps,2)))
         
         
 
