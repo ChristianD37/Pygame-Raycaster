@@ -17,7 +17,7 @@ class Map():
             for tile in layer:
                 x_off, y_off = x * self.grid_size, y * self.grid_size
                 # Empty space, do nothing
-                if tile == '1': glColor3f(1,1,1)
+                if tile == 1: glColor3f(1,1,1)
                 else: glColor3f(0,0,0)
                 glBegin(GL_QUADS)
                 glVertex2i(x_off + 1,y_off + 1)
@@ -35,4 +35,10 @@ class Map():
             self.map_grid = []
             for row in data:
                 self.map_grid.append(list(row))
+            # Covert the indices from strings to ints
+            for row in self.map_grid:
+                for index in range(len(row)):
+                    row[index] = int(row[index])
+            
+
         

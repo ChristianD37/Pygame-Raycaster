@@ -10,6 +10,7 @@ class Game():
         pygame.init()
         self.TITLE = "Platformer"
         self.DISPLAY_W, self.DISPLAY_H = 1024, 510
+        self.DISPLAY3D_W, self.DISPLAY3D_H = 320, 160
         self.display_open_gl(self.DISPLAY_W,self.DISPLAY_H)
         self.running, self.playing = True, True
         self.dir = os.path.dirname(os.path.abspath("game.py"))
@@ -58,12 +59,9 @@ class Game():
 
     def render(self):
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
-        # self.display.fill((80,80,80))
-        # self.map.draw()
-        # self.player.draw()
-        # self.draw_screen()
         self.map.draw()
         self.player.draw()
+        self.player.drawRays()
         pygame.display.flip()
 
     def get_dt(self):
@@ -77,8 +75,10 @@ class Game():
 
     def display_open_gl(self,w,h):
         pygame.display.set_mode((w,h), pygame.OPENGL|pygame.DOUBLEBUF)
-        glClearColor(.3,.3,.3,0)
+        glClearColor(0,0,0,0)
         gluOrtho2D(0,1024,512,0)
+        
+        
 
 if __name__ == "__main__":
     g = Game()
