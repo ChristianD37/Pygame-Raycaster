@@ -8,7 +8,6 @@ from OpenGL.GLU import *
 class Game():
     def __init__(self):
         pygame.init()
-        self.TITLE = "Platformer"
         self.DISPLAY_W, self.DISPLAY_H = 1024, 510
         self.DISPLAY3D_W, self.DISPLAY3D_H = 320, 160
         self.display_open_gl(self.DISPLAY_W,self.DISPLAY_H)

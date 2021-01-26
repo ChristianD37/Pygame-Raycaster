@@ -118,8 +118,8 @@ class Player():
         while dof < 8:
             map_x = int(ray_x) >> 6
             map_y = int(ray_y) >> 6
-            map_x = max(min(map_x,7),0)
-            map_y = max(min(map_y,7),0)
+            map_x = max(min(map_x,self.game.map.grid_x - 1),0)
+            map_y = max(min(map_y,self.game.map.grid_y - 1),0)
             if self.game.map.map_grid[map_y][map_x] == 1: # Wall has been hit, return ray info
                 self.hray_x, self.hray_y = ray_x, ray_y
                 self.Hdist = math.hypot(self.position.x - self.hray_x, self.position.y - self.hray_y)
